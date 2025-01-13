@@ -1,0 +1,28 @@
+$phone: 767px;
+$tablet: 1200px;
+$laptop: 1600px;
+$fullHD: 1920px;
+$screen2k: 2400px;
+$projectWidth: 1920;
+$projectWidthTablet: 768;
+$projectWidthMobile: 375;
+
+:root {
+    --white: #fff;
+    --black: #000;
+    --red: #f06446;
+    --light_gray: #D0D0D0;
+    --gray: #F2F4F7;
+    --aqua_blue: #69B9BB;
+    --coal_black: #272727;
+    --gold: #C7B09B;
+    --dark_green: #364037;
+    --dark_gray: #343434;
+    --beige: #F2F0EB;
+    --purple: #773DBD;
+    --primary: var(--sky);
+    --transition: 0.3s all ease-in-out;
+    --font-primary: 'GT-America', sans-serif;
+    --font-secondary: 'SchnyderWideL', serif;
+    --phone-w: #{$phone};
+}

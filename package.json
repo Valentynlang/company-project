@@ -1,0 +1,36 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@glidejs/glide": "^3.6.2",
+    "@gtm-support/vue-gtm": "^3.1.0",
+    "@nuxt/image": "^1.7.0",
+    "@nuxtjs/seo": "^2.0.0-rc.18",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@pinia/nuxt": "^0.5.1",
+    "@vee-validate/nuxt": "^4.13.2",
+    "gsap": "^3.12.5",
+    "mapbox-gl": "^3.6.0",
+    "nuxt": "^3.12.4",
+    "nuxt-lazy-load": "^3.0.4",
+    "nuxt-seo-experiments": "^4.0.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.27",
+    "vue-recaptcha-v3": "^2.0.1",
+    "vue-router": "^4.4.0",
+    "vue-vimeo-player": "^1.1.2",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "sass": "^1.77.8",
+    "vite-svg-loader": "^5.1.0"
+  }
+}

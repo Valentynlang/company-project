@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .label-form {
+        @apply uppercase mb-3 text-3.5
+    }
+
+    .input {
+        @apply py-4 px-5 text-4 placeholder:opacity-50 border rounded
+    }
+
+    .row-left-bg {
+        @apply before:content-[''] before:absolute before:top-0 before:-left-10 before:h-full before:w-10 before:bg-gray 
+    }
+
+    .row-right-bg {
+        @apply after:content-[''] after:absolute after:top-0 after:-right-10 after:h-full after:w-10 after:bg-gray
+    }
+
+    .img-bg {
+        @apply absolute w-full h-full max-h-screen top-0 left-0 object-cover
+    }
+    .absolute-center {
+        @apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2
+    }
+
+    .font-primary {
+        font-family: var(--font-primary);
+    }
+
+    .font-secondary {
+        font-family: var(--font-secondary);
+        letter-spacing: 0;
+        font-weight: 300;
+    }
+}
+
+@layer utilities {
+    .leading-normal {
+        line-height: 1.4;
+    }
+
+    .leading-relaxed {
+        line-height: 1.65;
+    }
+
+    .leading-tight {
+        line-height: 1.2;
+    }
+
+    .leading-none {
+        line-height: 1;
+    }
+
+    .leading-loose {
+        line-height: 2;
+    }
+
+    .gap-18 {
+        gap: 4.5rem;
+    }
+
+    .p-22 {
+        padding: 5.5rem;
+    }
+
+    .col-span-full-2 {
+        grid-column: 2 / -2;
+    }
+
+    .col-span-full-3 {
+        grid-column: 3 / -3;
+    }
+
+    .w-full-2 {
+        width: 200%;
+    }
+    .w-full-3 {
+        width: 300%;
+    }
+    .w-full-4 {
+        width: 400%;
+    }
+    .h-screen-w {
+        height: 100vw;
+    }
+    .h-30-screen {
+        height: 30vw;
+    }
+    .h-screen-2 {
+        height: 200vh;
+    }
+    .h-screen-3 {
+        height: 300vh;
+    }
+
+    /* 100vh fix for mobile devices, requires "100vhFix.js" */
+    .h-screen {
+        height: 100vh;
+        height: 100dvh;
+        height: calc(var(--vh, 1vh) * 100);
+    }
+}

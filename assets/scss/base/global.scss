@@ -1,0 +1,124 @@
+p + p {
+    margin-top: 1em;
+}
+
+.no-scroll {
+    height: 100vh;
+    overflow: hidden;
+}
+
+main {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+section {
+    background-color: var(--white);
+}
+
+.hd_clamp {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.lazyLoad:not([fade]) {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.isLoaded:not([fade]) {
+    opacity: 1;
+}
+
+.lazy-no-anim.lazyLoad,
+.lazy-no-anim .lazyLoad {
+    transition: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+// sm
+
+.pt-mob-sm {
+    @media (max-width: $phone) {
+        padding-top: 3rem;
+    }
+}
+
+.pt-dsk-sm {
+    @media (min-width: $phone) {
+        padding-top: 7rem;
+    }
+}
+
+.pb-mob-sm {
+    @media (max-width: $phone) {
+        padding-bottom: 3rem;
+    }
+}
+
+.pb-dsk-sm {
+    @media (min-width: $phone) {
+        padding-bottom: 7rem;
+    }
+}
+
+// md
+
+.pt-mob-md {
+    @media (max-width: $phone) {
+        padding-top: 4rem;
+    }
+}
+
+.pt-dsk-md {
+    @media (min-width: $phone) {
+        padding-top: 9rem;
+    }
+}
+
+.pb-mob-md {
+    @media (max-width: $phone) {
+        padding-bottom: 4rem;
+    }
+}
+
+.pb-dsk-md {
+    @media (min-width: $phone) {
+        padding-bottom: 9rem;
+    }
+}
+
+// lg
+
+.pt-mob-lg {
+    @media (max-width: $phone) {
+        padding-top: 6rem;
+    }
+}
+
+.pt-dsk-lg {
+    @media (min-width: $phone) {
+        padding-top: 13rem;
+    }
+}
+
+.pb-mob-lg {
+    @media (max-width: $phone) {
+        padding-bottom: 6rem;
+    }
+}
+
+.pb-dsk-lg {
+    @media (min-width: $phone) {
+        padding-bottom: 13rem;
+    }
+}

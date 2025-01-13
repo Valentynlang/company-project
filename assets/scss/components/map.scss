@@ -1,0 +1,553 @@
+.location-map-holder {
+    img.location-map {
+        width: 100%;
+        height: vw(1280);
+        display: block;
+    }
+    &__holder {
+        height: 100vh;
+        position: relative;
+        .svg-placeholder {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.marker-redpin,
+.map__button .index {
+    font-family: var(--font-primary);
+    background-color: var(--black);
+    width: vw(32);
+    height: vw(32);
+    line-height: vw(24);
+    border-radius: vw(20);
+    font-size: vw(20);
+    letter-spacing: 0.01em;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s all ease-in-out;
+    transition-property: height, width, opacity, border-radius, font-size, background-color, color;
+}
+
+.link-sel .index {
+    background-color: var(--yellow) !important;
+    color: var(--black);
+}
+
+@media only screen and (max-width: $phone) {
+    // TODO: Temp solution, replace with actual map asap
+    .location-map-holder {
+        display: none;
+    }
+}
+
+.component-map {
+    &__menu-holder {
+        width: vw(516);
+        z-index: 2;
+        height: 100%;
+        padding: vw(60) vw(40);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &__menu {
+        width: 100%;
+        height: 100%;
+        background: var(--black);
+        position: relative;
+        overflow: hidden;
+        &__card {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 0.2s ease-in-out;
+            color: var(--white);
+            padding: vw(40) 0;
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+            &.--left {
+                left: 0;
+                opacity: 0;
+            }
+            &.--right {
+                left: 0;
+                opacity: 0;
+            }
+            &.--prev {
+                left: 0;
+                opacity: 0;
+            }
+            &.--next {
+                left: 0;
+                opacity: 0;
+            }
+            &.--active {
+                left: 0;
+                opacity: 1 !important;
+                z-index: 100000 !important;
+            }
+
+            #other-locations,
+            #backtocat-details {
+                &:hover {
+                    .arrow {
+                        // transform: translate(-30%) rotate(180deg);
+                        left: calc(-1 * #{vw(5)});
+                    }
+                }
+            }
+
+            .map__list,
+            .map__info {
+                overflow-y: auto;
+                padding: 0 vw(40);
+                height: 100%;
+
+                scrollbar-width: thin;
+                scrollbar-color: var(--yellow) transparent;
+
+                &::-webkit-scrollbar {
+                    width: vw(4);
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: var(--yellow);
+                }
+
+                &::-webkit-scrollbar-thumb:hover {
+                }
+            }
+
+            .arrow {
+                background-image: url('../svg/Arrow_Right_White.svg');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                width: vw(22);
+                height: vw(15);
+                transition: all 0.2s ease-in-out;
+                position: relative;
+                left: 0;
+                &.--flip {
+                    transform: rotate(180deg);
+                }
+            }
+
+            .map__button {
+                cursor: pointer;
+                user-select: none;
+                .index {
+                    background-color: transparent;
+                    opacity: 1;
+                    visibility: visible;
+                }
+                &.--main-button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: vw(20) 0;
+                    border-bottom: 1px solid;
+                    .icon {
+                        width: vw(32);
+                        height: vw(32);
+                        transition: all 0.2s ease-in-out;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        }
+                    }
+                    .text {
+                        flex: 1 1 auto;
+                    }
+
+                    &:hover {
+                        .icon {
+                            transform: scale(1.2);
+                        }
+                        .arrow {
+                            transform: translate(-30%) scale(1.2);
+                        }
+                    }
+                } // main-button
+                &.--cat-button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: vw(6) 0;
+                    .text {
+                        flex: 1 1 auto;
+                    }
+                    .arrow {
+                        width: vw(32);
+                        height: vw(20);
+                    }
+                    &.link-sel {
+                        .arrow {
+                            transform: translate(-20%) scale(1.3);
+                        }
+                    }
+                }
+            }
+
+            .map__header {
+                display: flex;
+                cursor: pointer;
+                justify-content: left;
+                align-items: center;
+                margin-bottom: vw(40);
+                padding: 0 vw(40);
+                img {
+                    height: vw(64);
+                    display: block;
+                }
+                .arrow {
+                    height: 100%;
+                }
+                .breadcrumb {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    grid-gap: vw(12) vw(36);
+                    flex-wrap: wrap;
+                    .breadcrumb__sub {
+                        text-transform: capitalize;
+                    }
+                    :not(:last-child) {
+                        color: #555;
+                        position: relative;
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            right: -1vw;
+                            width: vw(4);
+                            height: vw(4);
+                            border-radius: 50%;
+                            transform: translateY(-50%);
+                            background: var(--white);
+                        }
+                    }
+                    .hidden {
+                        display: none;
+                    }
+                }
+            } // map__header
+
+            .nolink {
+                cursor: auto;
+            }
+
+            .map__footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: vw(40);
+                padding: 0 vw(40);
+            }
+
+            .map__info {
+                &__image {
+                    height: vw(348);
+                    width: 100%;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            } // map__info
+        } // __card
+    } // __menu
+} // component-map
+
+.hide-marker {
+    opacity: 0;
+}
+
+.slide-in {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+}
+
+.slidedown {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    height: 0 !important;
+}
+
+.show-popup {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.show-image {
+    opacity: 1;
+}
+.show-marker {
+    opacity: 1;
+}
+
+#mininav-title {
+    text-transform: capitalize;
+    /* background-image: url('/img/location/icons/map-title.svg');
+    background-repeat: no-repeat;
+    background-position-x: vw(40);
+    background-size: contain;*/
+    padding: 0 vw(10) 0 vw(40);
+    margin-bottom: vw(23);
+    line-height: vw(32);
+}
+
+#loc-details {
+    z-index: 1002;
+}
+
+#location-menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    z-index: 1000;
+}
+
+.subnav {
+    opacity: 1;
+    visibility: visible;
+    transition: height 1s;
+}
+
+.i-point-popup {
+    opacity: inherit;
+    visibility: inherit;
+}
+
+.i-point-popup {
+    padding: 0;
+    width: vw(220);
+    height: vw(80);
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out 0s;
+    z-index: 111;
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    opacity: inherit;
+    visibility: inherit;
+
+    .img-box-wrap {
+        width: vw(80);
+        height: vw(80);
+        overflow: hidden;
+        display: block;
+        background-size: cover;
+    }
+    img {
+        max-width: unset;
+        display: block;
+    }
+    h3 {
+        font-size: vw(13);
+        line-height: vw(16);
+        display: block;
+        font-weight: 400;
+        margin: 0;
+        padding: vw(10) vw(30) 0 vw(10);
+        color: var(--black);
+        text-align: left;
+        flex: auto;
+        width: vw(160);
+        background: url('/img/location/icons/arrow.png') 90% 18% no-repeat;
+        background-size: 10%;
+        font-weight: 400;
+    }
+}
+
+.nxt-prv-btn-wrp {
+    width: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    padding: 0 vw(20);
+    .prev,
+    .next {
+        padding-left: vw(40);
+        size: contain;
+        padding-right: vw(40);
+        height: vw(30);
+        width: 45%;
+        background-size: contain;
+        line-height: vw(30);
+        position: relative;
+        .arrow-circle {
+            // background: url('/img/location/icons/prev.png') center left no-repeat;
+            position: absolute;
+            top: 0;
+            width: vw(30);
+            height: 100%;
+            border: 1px solid;
+            border-radius: 50%;
+            background: transparent;
+            transition: var(--transition);
+            &::before,
+            &::after {
+                height: 50%;
+                width: 50%;
+                position: absolute;
+                top: 25%;
+                left: 25%;
+                content: '';
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-image: url('../svg/Arrow_Right_White.svg');
+                transition: var(--transition);
+            }
+            &::before {
+                filter: invert(0.9);
+                transform: translate(-100%);
+                opacity: 0;
+                /* background-image: url('../svg/arrow_right_black.svg');*/
+            }
+        }
+        &:hover {
+            .arrow-circle {
+                background: var(--white);
+                &::before {
+                    transform: translate(0);
+                    opacity: 1;
+                }
+                &::after {
+                    transform: translate(100%);
+                    opacity: 0;
+                }
+            }
+        }
+    }
+    .prev {
+        .arrow-circle {
+            transform: rotate(180deg);
+            left: 0;
+        }
+    }
+    .next {
+        // background: url('/img/location/icons/next.png') center right no-repeat;
+        background-size: contain;
+        text-align: right;
+        .arrow-circle {
+            right: 0;
+        }
+    }
+}
+
+.marker-highlight {
+    width: vw(48);
+    height: vw(48);
+    background: var(--yellow);
+    border-radius: vw(30);
+    font-size: vw(32);
+    line-height: vw(36);
+    // padding-top: vw(8);
+    z-index: 1;
+    color: var(--black);
+}
+
+.marker-labels {
+    width: auto;
+    height: vw(28);
+    line-height: vw(28);
+    text-align: center;
+    padding-top: 0;
+    background-position: center right;
+    font-size: vw(16);
+    text-align: right;
+    padding-right: vw(32);
+}
+
+.marker-tube,
+.marker-rail {
+    max-width: vw(140);
+    background-image: url('/img/location/icons/transport-underground.svg');
+    background-repeat: no-repeat;
+    margin-left: -vw(65);
+    background-position: top right;
+    line-height: vw(20);
+    padding-top: vw(2);
+    background-size: contain;
+}
+
+.marker-rail {
+    background-image: url('/img/location/icons/transport-road.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.marker-eglogo {
+    max-width: vw(160);
+    background-image: url('/img/location/icons/embassy-pin.png');
+    background-repeat: no-repeat;
+    width: vw(124);
+    background-size: contain;
+    height: vw(82);
+}
+
+.marker-textlabels {
+    background-color: var(--yellow);
+    width: auto;
+    min-width: vw(50);
+    padding: 0 vw(10);
+}
+
+.marker-plainlabel {
+    width: vw(100);
+    text-align: center;
+}
+
+.plainlabelrotate {
+    transform: rotate(-45deg);
+}
+
+.popup {
+    margin-top: calc(-1 * (vw(4)));
+    opacity: 1;
+    visibility: visible;
+}
+
+#short_popup {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 10;
+    margin-top: calc(-1 * (vw(100)));
+    // margin-top:-vw(100);
+    margin-left: vw(15);
+    -webkit-transition: opacity 0.4s ease-in-out 0s;
+    transition: opacity 0.4s;
+    height: vw(100);
+    background: url('/img/location/icons/popup.svg') top left no-repeat;
+    background-color: transparent;
+    background-size: contain;
+}
+
+.filter-icons {
+    background-size: contain !important;
+}
